@@ -8,17 +8,17 @@ local laptopScreen = "Built-in Retina Display"
 local xcode = "Xcode"
 local chrome = "Google Chrome"
 local terminal = "Terminal"
-local vscode = "Code"
+local vscode = "Visual Studio Code"
 local slack = "Slack"
 
-function focus(app)
-  hs.window.filter.new(false):setAppFilter(app):getWindows()[1]:focus()
+function focus(appNames)
+  for index, appName in ipairs(appNames) do
+    hs.application.launchOrFocus(appName)
+  end
 end
 
 function xcodeTerminalChrome()
-  focus(xcode)
-  focus(terminal)
-  focus(chrome)
+  focus({xcode, terminal, chrome})
   hs.layout.apply({
     {xcode, nil, studioDisplay, hs.layout.left75, nil, nil},
     {terminal, nil, studioDisplay, hs.layout.right25, nil, nil},
@@ -27,9 +27,7 @@ function xcodeTerminalChrome()
 end
 
 function vscodeTerminalChrome()
-  focus(vscode)
-  focus(chrome)
-  focus(terminal)
+  focus({vscode, terminal, chrome})
   hs.layout.apply({
     {vscode, nil, studioDisplay, hs.layout.left75, nil, nil},
     {terminal, nil, studioDisplay, hs.layout.right25, nil, nil},
@@ -38,8 +36,7 @@ function vscodeTerminalChrome()
 end
 
 function chromeSlack()
-  focus(chrome)
-  focus(slack)
+  focus({chrome, slack})
   hs.layout.apply({
     {chrome, nil, studioDisplay, hs.layout.maximized, nil, nil},
     {slack, nil, laptopScreen, hs.layout.maximized, nil, nil},
