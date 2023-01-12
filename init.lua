@@ -1,4 +1,5 @@
 hs.loadSpoon("ReloadConfiguration")
+hs.loadSpoon("ClipboardTool")
 
 spoon.ReloadConfiguration:start()
 
@@ -10,6 +11,8 @@ local chrome = "Google Chrome"
 local terminal = "Terminal"
 local vscode = "Visual Studio Code"
 local slack = "Slack"
+
+local hyper = {'ctrl', 'shift', 'alt', 'cmd'}
 
 function focus(appNames)
   for index, appName in ipairs(appNames) do
@@ -46,3 +49,15 @@ end
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "1", xcodeTerminalChrome)
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "2", vscodeTerminalChrome)
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "3", chromeSlack)
+
+function setUpClipboardTool()
+  ClipboardTool = hs.loadSpoon('ClipboardTool')
+  ClipboardTool.show_in_menubar = false
+  ClipboardTool.show_copied_alert = false
+  ClipboardTool:start()
+  ClipboardTool:bindHotkeys({
+    toggle_clipboard = {hyper, "p"}
+  })
+end
+
+setUpClipboardTool()
