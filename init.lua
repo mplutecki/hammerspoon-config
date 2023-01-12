@@ -61,3 +61,17 @@ function setUpClipboardTool()
 end
 
 setUpClipboardTool()
+
+
+local chromeCliPath = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
+
+function launchChromePersonalProfile()
+  hs.execute(chromeCliPath .. " --args --profile-directory=Default")
+end
+
+function launchChromeWorkProfile()
+  hs.execute(chromeCliPath .. " --args --profile-directory=\"Profile 1\"")
+end
+
+hs.hotkey.bind(hyper, "b", launchChromePersonalProfile)
+hs.hotkey.bind(hyper, "w", launchChromeWorkProfile)
