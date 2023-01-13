@@ -62,7 +62,6 @@ end
 
 setUpClipboardTool()
 
-
 local chromeCliPath = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
 
 function launchChromePersonalProfile()
@@ -75,3 +74,15 @@ end
 
 hs.hotkey.bind(hyper, "b", launchChromePersonalProfile)
 hs.hotkey.bind(hyper, "w", launchChromeWorkProfile)
+
+
+function launchNewTerminal()
+  hs.execute("open -a Terminal ~")
+end
+
+function launchSlack()
+  hs.application.launchOrFocus(slack)
+end
+
+hs.hotkey.bind(hyper, "t", launchNewTerminal)
+hs.hotkey.bind(hyper, "s", launchSlack)
